@@ -26,6 +26,10 @@ isort = "^7.0.0"
 pydocstyle = "^6.3.0"
 pytest-cov = "^7.0.0"
 
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=term-missing"
+testpaths = ["tests"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
