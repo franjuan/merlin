@@ -21,6 +21,7 @@ lint:
     poetry run ruff check src tests
     poetry run mypy src
     poetry run pydocstyle src tests --convention=google
+    poetry run detect-secrets scan
 
 # Format code
 format:

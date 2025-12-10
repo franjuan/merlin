@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and Test (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v4
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+
+    - name: Install project
+      run: poetry install --no-interaction
+
+    - name: Check code formatting (Black)
+      run: poetry run black --check .
+
+    - name: Check import sorting (Isort)
+      run: poetry run isort --check-only .
+
+    - name: Linting (Ruff)
+      run: poetry run ruff check .
+
+    - name: Type checking (MyPy)
+      run: poetry run mypy src
+
+    - name: Docstring validation (Pydocstyle)
+      run: poetry run pydocstyle src tests --convention=google
+
+    - name: Check for secrets (Detect Secrets)
+      run: |
+        # Check if baseline exists, if so use it
+        if [ -f .secrets.baseline ]; then
+          poetry run detect-secrets-hook --baseline .secrets.baseline $(git ls-files)
+        else
+          echo "No .secrets.baseline found, skipping strict check."
+          poetry run detect-secrets scan
+        fi
+
+    - name: Security audit (Pip-audit)
+      run: poetry run pip-audit
+
+    - name: Run Tests (Pytest)
+      run: poetry run pytest
+
+  codespell:
+    name: Check Spelling
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: codespell-project/actions-codespell@v2
