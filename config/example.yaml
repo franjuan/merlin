@@ -1,0 +1,7 @@
+# Example Configuration File
+# Copy this file to config/config.yaml and adjust values.
+
+app:
+  title: "Investment Tracker"
+  version: "0.1.0"
+  debug: false

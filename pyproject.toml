@@ -1,0 +1,85 @@
+[tool.poetry]
+name = "merlin"
+version = "0.1.0"
+description = "Investment Tracker Application"
+authors = ["Juanfran <juanfran@example.com>"]
+readme = "README.md"
+packages = [{include = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.52.1"
+pandas = "^2.3.3"
+plotly = "^6.5.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+black = "^25.12.0"
+ruff = "^0.14.8"
+mypy = "^1.19.0"
+pre-commit = "^4.5.0"
+pip-audit = "^2.10.0"
+types-requests = "^2.32.4"
+types-PyYAML = "^6.0.12"
+detect-secrets = "^1.5.0"
+isort = "^7.0.0"
+pydocstyle = "^6.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+target-version = ['py312']
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | pocs
+)/
+'''
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C",   # convention
+    "B",   # flake8-bugbear
+]
+ignore = []
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = [
+    "streamlit",
+    "plotly.*",
+    "pandas"
+]
+ignore_missing_imports = true

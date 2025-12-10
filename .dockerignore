@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+
+# Poetry
+.poetry
+.venv
+
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info
+dist
+build
+
+# Environment
+.env
+.env.*
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# IDE
+.vscode
+.idea
+
+# MyPy
+.mypy_cache

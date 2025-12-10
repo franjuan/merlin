@@ -1,0 +1,12 @@
+services:
+  app:
+    build: .
+    container_name: merlin-app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./config:/app/config
+      - ./data:/app/data
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
