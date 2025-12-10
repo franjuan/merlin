@@ -147,9 +147,6 @@ config/*
 data/*
 !data/.gitkeep
 
-# Secrets
-.secrets.baseline
-
 # Editor settings
 .idea/
 .vscode/

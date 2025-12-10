@@ -58,7 +58,7 @@ merlin/
 
 ### Usage
 
-**Run Development Server**
+#### Run Development Server
 
 ```bash
 just dev
@@ -66,13 +66,13 @@ just dev
 
 The application will be available at `http://localhost:8501`.
 
-**Run Tests**
+#### Run Tests
 
 ```bash
 just test
 ```
 
-**Format & Lint Code**
+#### Format & Lint Code
 
 ```bash
 just format
@@ -81,13 +81,14 @@ just lint
 
 ### Docker Deployment
 
-**Build & Run**
+#### Build & Run
 
 ```bash
 just docker-run
 ```
 
-This builds the Docker image and starts the container using Docker Compose. The app will be available at `http://localhost:8501`.
+This builds the Docker image and starts the container using Docker Compose. The app will be available at
+`http://localhost:8501`.
 
 ## Documentation & Comments
 
