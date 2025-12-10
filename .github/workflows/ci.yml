@@ -188,6 +188,3 @@ jobs:
 
       - name: Run codespell
         uses: codespell-project/actions-codespell@v2
-        with:
-          check_filenames_only: false
-          fail_on_errors: true
