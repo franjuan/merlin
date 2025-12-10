@@ -120,10 +120,6 @@ just docker-run
 This builds the Docker image and starts the container using Docker Compose. The app will be available at
 `http://localhost:8501`.
 
-## Documentation & Comments
-
-All code comments and documentation are provided in English.
-
 ## License
 
 [MIT](LICENSE)
