@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Investment Tracker Application"
 authors = ["Juanfran <juanfran@example.com>"]
 readme = "README.md"
-packages = [{include = "src"}]
+packages = [{include = "src"}, {include = "**/*.sql", from = "src"}]
 
 [tool.poetry.dependencies]
 python = ">=3.12,<3.14"
@@ -90,3 +90,6 @@ module = [
     "pandas"
 ]
 ignore_missing_imports = true
+
+[tool.codespell]
+ignore-words-list = "occurence"
