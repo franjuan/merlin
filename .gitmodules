@@ -1,0 +1,3 @@
+[submodule "external/kmymoney"]
+	path = external/kmymoney
+	url = git@github.com:KDE/kmymoney.git
